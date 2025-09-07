@@ -25,15 +25,16 @@
     "create",
     "template"
   ],
-  "author": "Your Name <your.email@example.com>",
+  "author": "Dipesh Goud",
+  "homepage": "https://www.npmjs.com/package/create-tailvite",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/create-tailwind-vite.git"
+    "url": "https://github.com/DipeshGoud/create-tailvite"
   },
-  "homepage": "https://github.com/yourusername/create-tailwind-vite#readme",
+
   "bugs": {
-    "url": "https://github.com/yourusername/create-tailwind-vite/issues"
+    "url": "https://github.com/DipeshGoud/create-tailvite/issues"
   },
   "dependencies": {
     "chalk": "^5.3.0",
