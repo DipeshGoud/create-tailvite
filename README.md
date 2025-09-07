@@ -16,6 +16,8 @@
 
 ---
 
+> Important: Do NOT install this package into your project with `npm i create-tailvite`. This package is a scaffolding CLI. Use `npx create-tailvite` or `npx create-tailvite@latest` (both work identically) to generate a new project instead.
+
 **Create Tailwind Vite** is a professional-grade scaffolding tool that instantly creates modern React applications with Vite and Tailwind CSS. Get a production-ready development environment in seconds with zero configuration required.
 
 ## ✨ Features
@@ -63,8 +65,11 @@
 
 ### Recommended: Use npx (no installation required)
 ```bash
-# Create in a new directory
+# Create in a new directory (both commands work identically)
+npx create-tailvite my-awesome-app
+# or
 npx create-tailvite@latest my-awesome-app
+
 cd my-awesome-app
 npm run dev
 ```
@@ -72,7 +77,10 @@ npm run dev
 ### Create in current directory
 ```bash
 # Create in current directory (must be empty)
+npx create-tailvite .
+# or
 npx create-tailvite@latest .
+
 npm run dev
 ```
 
@@ -86,7 +94,7 @@ create-tailvite my-awesome-app
 ```
 
 > **Note**: 
-> - `npx create-tailvite@latest` ensures you always use the latest version
+> - Both `npx create-tailvite` and `npx create-tailvite@latest` work identically and use the latest version
 > - `npm i -g create-tailvite` installs the package globally (no @latest needed)
 > - When using `.`, the current directory must be empty (hidden files like `.git` are allowed)
 
@@ -173,6 +181,8 @@ my-awesome-app/
 
 ### Using npx (Recommended)
 ```bash
+# Both commands work identically
+npx create-tailvite <project-name>
 npx create-tailvite@latest <project-name>
 ```
 
@@ -193,8 +203,10 @@ create-tailvite <project-name>
 
 ### Examples
 ```bash
-# Using npx (always latest version)
+# Using npx (both formats work identically)
+npx create-tailvite my-react-app
 npx create-tailvite@latest my-react-app
+npx create-tailvite .
 npx create-tailvite@latest .
 
 # Using global installation
@@ -202,7 +214,9 @@ create-tailvite my-react-app
 create-tailvite .
 
 # Using different package managers with npx
+yarn create tailvite my-app
 yarn create tailvite@latest my-app
+pnpm create tailvite my-app
 pnpm create tailvite@latest my-app
 ```
 

@@ -1,12 +1,13 @@
 {
   "name": "create-tailvite",
   "version": "1.0.3",
-  "description": "⚡ The fastest way to create modern React applications with Vite and Tailwind CSS. Zero configuration, production-ready setup in seconds.",
+  "description": "⚡ The fastest way to create modern React applications with Vite and Tailwind CSS. Use 'npx create-tailvite' or 'npx create-tailvite@latest' - both work identically. Zero configuration, production-ready setup in seconds.",
   "type": "module",
   "main": "index.js",
   "bin": {
     "create-tailvite": "./index.js"
   },
+  "preferGlobal": true,
   "files": [
     "index.js",
     "templates/"
