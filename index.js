@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import inquirer from 'inquirer';
 import fs from 'fs-extra';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -10,69 +9,81 @@ import chalk from 'chalk';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const TEMPLATE_NAME = 'React + JavaScript + Tailwind CSS v4.1';
-const TEMPLATE_FOLDER = 'react-js-tailwind';
-
 function validateProjectName(name) {
   if (!name || !name.trim()) {
     throw new Error('Project name is required');
   }
-  if (!/^[a-zA-Z0-9-_]+$/.test(name.trim())) {
+  
+  const trimmedName = name.trim();
+  
+  // Allow '.' for current directory
+  if (trimmedName === '.') {
+    return trimmedName;
+  }
+  
+  if (!/^[a-zA-Z0-9-_]+$/.test(trimmedName)) {
     throw new Error('Project name can only contain letters, numbers, hyphens, and underscores');
   }
-  return name.trim();
-}
-
-async function getProjectName(args) {
-  let projectName = args[0];
-  
-  if (!projectName) {
-    const { name } = await inquirer.prompt([{
-      type: 'input',
-      name: 'name',
-      message: 'Project name:',
-      validate: input => {
-        try {
-          validateProjectName(input);
-          return true;
-        } catch (error) {
-          return error.message;
-        }
-      }
-    }]);
-    projectName = name;
-  }
-  
-  return validateProjectName(projectName);
+  return trimmedName;
 }
 
 async function main() {
-   console.log(chalk.cyan.bold('\n🚀 Create Tailwind Vite'));
-   console.log(chalk.gray(`Modern ${TEMPLATE_NAME} scaffolding\n`));
+  console.log(chalk.cyan.bold('\n🚀 Create Tailwind Vite'));
+  console.log(chalk.gray('Modern React + Vite + Tailwind CSS scaffolding\n'));
+
+  const projectName = process.argv[2];
+  
+  if (!projectName) {
+    console.error(chalk.red('❌ Project name is required'));
+    console.log(chalk.yellow('Usage: npx create-tailvite@latest <project-name>'));
+    console.log(chalk.yellow('Examples:'));
+    console.log(chalk.yellow('  npx create-tailvite@latest my-app'));
+    console.log(chalk.yellow('  npx create-tailvite@latest .  # Create in current directory'));
+    process.exit(1);
+  }
 
   try {
-    const projectName = await getProjectName(process.argv.slice(2));
+    const validatedName = validateProjectName(projectName);
+    const isCurrentDir = validatedName === '.';
+    const targetDir = isCurrentDir ? process.cwd() : validatedName;
+    const displayName = isCurrentDir ? 'current directory' : validatedName;
     
-    if (fs.existsSync(projectName)) {
-      console.error(chalk.red(`❌ Directory "${projectName}" already exists`));
+    // Check if target directory exists and is not empty (except for current dir)
+    if (!isCurrentDir && fs.existsSync(validatedName)) {
+      console.error(chalk.red(`❌ Directory "${validatedName}" already exists`));
       process.exit(1);
     }
+    
+    // For current directory, check if it's empty
+    if (isCurrentDir) {
+      const files = fs.readdirSync(targetDir).filter(file => !file.startsWith('.'));
+      if (files.length > 0) {
+        console.error(chalk.red('❌ Current directory is not empty'));
+        console.log(chalk.yellow('Please run this command in an empty directory or specify a new folder name'));
+        process.exit(1);
+      }
+    }
 
-    const templatePath = path.join(__dirname, 'templates', TEMPLATE_FOLDER);
+    const templatePath = path.join(__dirname, 'templates', 'react-js-tailwind');
     
     if (!fs.existsSync(templatePath)) {
       console.error(chalk.red('❌ Template not found'));
       process.exit(1);
     }
 
-    console.log(chalk.cyan(`\n🚀 Creating ${projectName}...\n`));
+    console.log(chalk.cyan(`🚀 Creating project in ${displayName}...\n`));
 
-    await fs.copy(templatePath, projectName);
+    // Create directory if it doesn't exist
+    if (!isCurrentDir) {
+      await fs.ensureDir(validatedName);
+    }
+    
+    await fs.copy(templatePath, targetDir);
     console.log(chalk.green('✅ Files copied'));
     console.log(chalk.blue('📦 Installing dependencies...'));
 
     const installProcess = spawn('npm', ['install'], {
-      cwd: projectName,
+      cwd: targetDir,
       stdio: 'inherit',
       shell: true
     });
@@ -81,7 +92,9 @@ async function main() {
       if (code === 0) {
         console.log(chalk.green('\n🎉 Project ready!'));
         console.log(chalk.cyan('\nNext steps:'));
-        console.log(chalk.white(`  cd ${projectName}`));
+        if (!isCurrentDir) {
+          console.log(chalk.white(`  cd ${validatedName}`));
+        }
         console.log(chalk.white('  npm run dev'));
       } else {
         console.error(chalk.red('❌ Installation failed'));

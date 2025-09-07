@@ -1,11 +1,11 @@
 {
   "name": "create-tailvite",
-  "version": "1.0.1",
-  "description": "Modern React + Vite + Tailwind CSS v4.1 project scaffolding tool",
+  "version": "1.0.2",
+  "description": "⚡ The fastest way to create modern React applications with Vite and Tailwind CSS. Zero configuration, production-ready setup in seconds.",
   "type": "module",
   "main": "index.js",
   "bin": {
-    "create-tailwind-vite": "./index.js"
+    "create-tailvite": "./index.js"
   },
   "files": [
     "index.js",
@@ -15,31 +15,42 @@
     "test": "node index.js test-project"
   },
   "keywords": [
-    "vite",
     "react",
-    "tailwind",
+    "vite",
     "tailwindcss",
+    "tailwind",
+    "css",
     "scaffolding",
+    "template",
     "cli",
+    "create-app",
+    "boilerplate",
+    "starter",
     "frontend",
-    "create",
-    "template"
+    "javascript",
+    "typescript",
+    "build-tool",
+    "development",
+    "modern",
+    "fast",
+    "zero-config"
   ],
-  "author": "Dipesh Goud",
+  "author": {
+    "name": "Dipesh Goud",
+    "url": "https://github.com/dipeshgoud"
+  },
   "homepage": "https://www.npmjs.com/package/create-tailvite",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/DipeshGoud/create-tailvite"
+    "url": "git+https://github.com/dipeshgoud/create-tailvite.git"
   },
-
   "bugs": {
-    "url": "https://github.com/DipeshGoud/create-tailvite/issues"
+    "url": "https://github.com/dipeshgoud/create-tailvite/issues"
   },
   "dependencies": {
     "chalk": "^5.3.0",
-    "fs-extra": "^11.2.0",
-    "inquirer": "^10.2.2"
+    "fs-extra": "^11.2.0"
   },
   "engines": {
     "node": ">=18.0.0"
