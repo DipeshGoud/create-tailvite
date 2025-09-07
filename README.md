@@ -61,7 +61,7 @@
 
 ## 🚀 Quick Start
 
-### Create a new project
+### Recommended: Use npx (no installation required)
 ```bash
 # Create in a new directory
 npx create-tailvite@latest my-awesome-app
@@ -76,7 +76,19 @@ npx create-tailvite@latest .
 npm run dev
 ```
 
-> **Note**: When using `.`, the current directory must be empty (hidden files like `.git` are allowed).
+### Alternative: Global installation
+```bash
+# Install globally (optional)
+npm i -g create-tailvite
+
+# Then use without npx
+create-tailvite my-awesome-app
+```
+
+> **Note**: 
+> - `npx create-tailvite@latest` ensures you always use the latest version
+> - `npm i -g create-tailvite` installs the package globally (no @latest needed)
+> - When using `.`, the current directory must be empty (hidden files like `.git` are allowed)
 
 ## 📦 What's Included
 
@@ -159,9 +171,18 @@ my-awesome-app/
 
 ## 💻 Commands
 
-### Basic Usage
+### Using npx (Recommended)
 ```bash
 npx create-tailvite@latest <project-name>
+```
+
+### Using Global Installation
+```bash
+# First install globally
+npm i -g create-tailvite
+
+# Then use directly
+create-tailvite <project-name>
 ```
 
 ### Arguments
@@ -172,13 +193,15 @@ npx create-tailvite@latest <project-name>
 
 ### Examples
 ```bash
-# Create a new project
+# Using npx (always latest version)
 npx create-tailvite@latest my-react-app
-
-# Create in current directory
 npx create-tailvite@latest .
 
-# Using different package managers
+# Using global installation
+create-tailvite my-react-app
+create-tailvite .
+
+# Using different package managers with npx
 yarn create tailvite@latest my-app
 pnpm create tailvite@latest my-app
 ```
