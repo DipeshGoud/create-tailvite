@@ -3,6 +3,11 @@
   <p><strong>The fastest way to create modern React applications</strong></p>
   <p>Zero configuration • Production ready • Lightning fast</p>
   
+  <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 12px; margin: 20px 0; box-shadow: 0 8px 32px rgba(0,0,0,0.1);">
+    <h2 style="color: white; margin: 0 0 10px 0; font-size: 1.5em;">🚀 Quick Start</h2>
+    <code style="background: rgba(255,255,255,0.2); color: white; padding: 12px 20px; border-radius: 8px; font-size: 1.2em; font-weight: bold; display: block; backdrop-filter: blur(10px);">npm create tailvite@latest my-app</code>
+  </div>
+  
   <a href="https://www.npmjs.com/package/create-tailvite">
     <img src="https://img.shields.io/npm/v/create-tailvite.svg" alt="npm version">
   </a>
